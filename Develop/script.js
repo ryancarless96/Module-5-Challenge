@@ -1,30 +1,16 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-date = dayjs();
+var hourEl = $('#hour');
+var minuteEl = $('#minute');
+var secondEl =$('#second');
+var dayEl = $('#day');
 
-dayjs().format('YYYY-MM-DD [at] HH:mm:ss');
-dayjs().format('HH:mm:ss [on] YYYY-MM-DD');
 
-var hour = now.hour();
-var minute = now.minute();
-var second = now.second();
-
-function log() {
-  for(var i = 0; i < 9; i++) {
-    console.log(localStorage.getItem('input$[i]'))
-  }
+function daySchedule() {
+    var time = moment().format('MMM DD, YYYY [at] hh:mm:ss a');
+    hourEl.text(time);
 }
-function placeholder(){
-  for(var i =0; i < 9; i++) {
-
-  }
-}
-
-$(function () {
-  var time = [
-
-  ]
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
@@ -32,8 +18,11 @@ $(function () {
     // time-block containing the button that was clicked? How might the id be
     // useful when saving the description in local storage?
     saveBtnEl.on("click",function (){
+for(var i=0; i < 5; i++) {
+  
+}
 
-    } )
+    
   
     //
     // TODO: Add code to apply the past, present, or future class to each time
@@ -55,6 +44,6 @@ $(function () {
     // TODO: Add code to display the current date in the header of the page.
     var currentDate = dayjs('2022-09-11')
     var today = dayjs();
-    var days = targetDay.diff(today,'day');
+    var days = currentDate.diff(today,'day');
     $('a').text(days);
   });
