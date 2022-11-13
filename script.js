@@ -2,10 +2,11 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var hourEl = $('#hour');
+let today = new Date()
 var minuteEl = $('#minute');
 var secondEl = $('#second');
 var dayEl = $('#day');
-
+let schedule = JSON.parse(window.localStorage.getItem("schedule")) 
 function daySchedule(){
     var time = moment().format('MMM D,YYYY');
     hourEl.text(time);
@@ -17,10 +18,14 @@ function daySchedule(){
 // function? How can DOM traversal be used to get the "hour-x" id of the
 // time-block containing the button that was clicked? How might the id be
 // useful when saving the description in local storage?
-saveBtnEl.on("click", function () {
-    for (var i = 0; i < 5; i++) {
-
-    }
+$(".saveBtn").on("click", function () {
+   let time = $(this).parent().attr("id")
+   let value = $(this).siblings(".description").val()
+   console.log (time,value)
+    let schedule = JSON.parse(window.localStorage.getItem("schedule")) || []
+    schedule.push({time,value})
+    window.localStorage.setItem("schedule",JSON.stringify(schedule))
+    
 
 
 
@@ -47,3 +52,16 @@ saveBtnEl.on("click", function () {
     var days = currentDate.diff(today, 'day');
     $('a').text(days);
 });
+$(".description").each(function(){
+    let id= $(this).parent().attr("id")
+    for (let index = 0; index < schedule.length; index++) {
+        const element = schedule[index];
+        if (id == element.time) {
+            $(this).text(element.value)
+        }
+        
+    }
+})
+
+let formattedDate = today.getMonth()+ "-" + today.getDate()+ "-" + today.getFullYear()
+$("#currentDay").text(formattedDate)
