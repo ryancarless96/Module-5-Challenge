@@ -18,18 +18,13 @@ $(".saveBtn").on("click", function () {
    let value = $(this).siblings(".description").val()
    console.log (time,value)
    // code to apply the past, present, or future class to each time block by comparing the id to the current hour. 
-
-   
-   //code saved in localStorage and set the values of the corresponding text area elements.   
+   // code saved in localStorage and set the values of the corresponding text area elements.   
     let schedule = JSON.parse(window.localStorage.getItem("schedule")) || []
     schedule.push({time,value})
     window.localStorage.setItem("schedule",JSON.stringify(schedule))
     
-
-   
-
   //header to display the current date in the header of the page.
-    var currentDate = dayjs('2022-09-11')
+    var currentDate = dayjs('#currentDay')
     var today = dayjs();
     var days = currentDate.diff(today, 'day');
     $('a').text(days);
@@ -45,5 +40,7 @@ $(".description").each(function(){
     }
 })
 let formattedDate = today.getMonth()+ "-" + today.getDate()+ "-" + today.getFullYear()
-$("#currentDay").text(formattedDate)
+$("#currentDay").text(formattedDate);
+
+setInterval(daySchedule,1000);
 
