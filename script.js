@@ -7,8 +7,10 @@ var secondEl = $('#second');
 var dayEl = $('#day');
 let schedule = JSON.parse(window.localStorage.getItem("schedule")) 
 function daySchedule(){
-    var time = moment().format('MMM D,YYYY');
-    hourEl.text(time);
+    dayjs().format()
+    $("#currentDay").text(formattedDate); 
+    dayjs().calendar()
+    
 }
 
 // listener for click events on the save button. The code uses the id in the containing time-block as a key to save the user input in
